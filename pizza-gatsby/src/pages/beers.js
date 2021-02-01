@@ -1,11 +1,12 @@
 import React from 'react';
 import Nav from '../components/Nav';
+import Layout from '../components/Layout';
 
 const BeersPage = () => (
-  <div>
+  <Layout>
     <Nav />
     <p>I'm the Beers Page</p>
-  </div>
+  </Layout>
 );
 
 export default BeersPage;

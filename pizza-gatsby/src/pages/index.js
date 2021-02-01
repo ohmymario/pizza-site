@@ -1,11 +1,10 @@
 import React from 'react';
-import Nav from '../components/Nav';
+import Layout from '../components/Layout';
 
 const HomePage = () => (
-  <div>
-    <Nav />
+  <Layout>
     <p>I'm the homepage</p>
-  </div>
+  </Layout>
 );
 
 export default HomePage;
