@@ -19,7 +19,7 @@ const NavStyles = styled.nav`
     grid-template-columns: 1fr 1fr auto 1fr 1fr;
     grid-gap: 2rem;
     align-items: center;
-    /* margin-top:  */
+    margin-top: -6rem;
   }
   li {
     transform: rotate(-2deg);
