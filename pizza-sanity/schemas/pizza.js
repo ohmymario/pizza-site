@@ -46,4 +46,22 @@ export default {
       of: [{ type: 'reference', to: [{ type: 'topping' }] }],
     },
   ],
+  preview: {
+    select: {
+      title: 'name',
+      media: 'image',
+      toppings0: 'toppings.0.name',
+      toppings1: 'toppings.1.name',
+      toppings2: 'toppings.2.name',
+      toppings3: 'toppings.3.name',
+    },
+    prepare: ({ title, media, ...toppings }) => {
+      const filteredToppings = Object.values(toppings).filter(Boolean);
+      return {
+        title,
+        media,
+        subtitle: filteredToppings.join(', '),
+      };
+    },
+  },
 };
