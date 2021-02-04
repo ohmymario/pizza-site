@@ -24,12 +24,26 @@ export default {
       },
     },
     {
+      name: 'image',
+      title: 'Image',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+    },
+    {
       name: 'price',
       title: 'Price',
       type: 'number',
       description: 'Price of the pizza in cents',
       validation: (Rule) => Rule.min(1000).max(5000),
       // add custom input component
+    },
+    {
+      name: 'toppings',
+      title: 'Toppings',
+      type: 'array',
+      of: [{ type: 'reference', to: [{ type: 'topping' }] }],
     },
   ],
 };
