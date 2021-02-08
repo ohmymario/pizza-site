@@ -1,1 +1,7 @@
-// This file is empty, but some people were reporting that it would not start unless they had an empty file.
+export default {
+  siteMetadata: {
+    title: `Gatsby`,
+    siteUrl: `https://www.gatsbyjs.com`,
+    description: `Blazing fast modern site generator for React`,
+  },
+};
