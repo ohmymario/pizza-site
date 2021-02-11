@@ -4,6 +4,7 @@ import PizzaList from '../components/PizzaList';
 
 const PizzasPage = (props) => {
   const { data } = props;
+  console.log(props);
   return (
     <>
       <PizzaList pizzas={data.pizzas} />
