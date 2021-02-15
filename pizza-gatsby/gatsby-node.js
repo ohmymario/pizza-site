@@ -23,6 +23,9 @@ const turnPizzasIntoPages = async ({ graphql, actions }) => {
       // What is the URL for this new page
       path: `pizza/${pizza.slug.current}`,
       component: pizzaTemplate,
+      context: {
+        slug: pizza.slug.current,
+      },
     });
   });
 };
