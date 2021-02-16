@@ -4,18 +4,20 @@ import PizzaList from '../components/PizzaList';
 import ToppingsFilter from '../components/ToppingsFilter';
 
 const PizzasPage = (props) => {
-  const { data } = props;
+  const { data, pageContext } = props;
   return (
     <>
-      <ToppingsFilter />
+      <ToppingsFilter activeTopping={pageContext.topping} />
       <PizzaList pizzas={data.pizzas} />
     </>
   );
 };
 
 export const query = graphql`
-  query {
-    pizzas: allSanityPizza {
+  query($topping: [String]) {
+    pizzas: allSanityPizza(
+      filter: { toppings: { elemMatch: { name: { in: $topping } } } }
+    ) {
       nodes {
         name
         price
