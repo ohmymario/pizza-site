@@ -1,6 +1,7 @@
 import path from 'path';
 
 const turnPizzasIntoPages = async ({ graphql, actions }) => {
+  const { createPage } = actions;
   // 1. Get a template for this page
   const pizzaTemplate = path.resolve('./src/templates/Pizza.js');
   // 2. Query all pizzas
@@ -18,7 +19,7 @@ const turnPizzasIntoPages = async ({ graphql, actions }) => {
   `);
   // 3. Loops over each pizza and create a page for that pizza
   data.pizzas.nodes.forEach((pizza) => {
-    actions.createPage({
+    createPage({
       // What is the URL for this new page
       path: `pizza/${pizza.slug.current}`,
       component: pizzaTemplate,
@@ -30,6 +31,7 @@ const turnPizzasIntoPages = async ({ graphql, actions }) => {
 };
 
 const turnToppingsIntoPages = async ({ graphql, actions }) => {
+  const { createPage } = actions;
   // 1. Get a template for this page
   const toppingsTemplate = path.resolve('./src/pages/pizzas.js');
   // 2. Query all pizzas
@@ -45,7 +47,7 @@ const turnToppingsIntoPages = async ({ graphql, actions }) => {
   `);
   // 3. Loops over each pizza and create a page for that pizza
   data.toppings.nodes.forEach((topping) => {
-    actions.createPage({
+    createPage({
       path: `topping/${topping.name}`,
       component: toppingsTemplate,
       context: {
