@@ -86,7 +86,7 @@ const fetchBeersAndTurnIntoNodes = async ({
 };
 
 const turnSlicemastersIntoPages = async ({ graphql, actions }) => {
-  // 1. Query all slicemasters
+  const { createPage } = actions;
   const { data } = await graphql(`
     query MyQuery {
       slicemasters: allSanityPerson {
@@ -101,25 +101,20 @@ const turnSlicemastersIntoPages = async ({ graphql, actions }) => {
       }
     }
   `);
-  // TODO: 2. Turn each slicemaster into their own page
-  // 3. Figure out how many pages there are based on how many slicemasters there are
 
   const pageSize = parseInt(process.env.GATSBY_PAGE_SIZE);
   const pageCount = Math.ceil(data.slicemasters.totalCount / pageSize);
 
-  console.log(
-    `There are ${data.slicemasters.totalCount} total people. And we have
-    ${pageCount} pages with ${pageSize} per page`
-  );
-  // 4. Loop from 1 to n and create pages for them.
   Array.from({ length: pageCount }).forEach((_, i) => {
-    console.log(`creating page ${i}`);
-    actions.createPage({
+    createPage({
       path: `/slicemasters/${i + 1}`,
       component: path.resolve('./src/pages/slicemasters.js'),
       context: {
+        // how many employees to skip to get the needed ones for the page
         skip: i * pageSize,
+        // What page you are on
         currentPage: i + 1,
+        // how many employees per page
         pageSize,
       },
     });
