@@ -39,28 +39,34 @@ const SlicemasterStyles = styled.div`
 
 const SlicemastersPage = ({ data, pageContext }) => {
   const slicemasters = data.slicemasters.nodes;
-  const { currentPage, pageSize, skip } = pageContext;
+  const { totalCount } = data.slicemasters;
+  const { currentPage, skip } = pageContext;
+  const pageSize = process.env.GATSBY_PAGE_SIZE;
+
   return (
     <>
       <Pagination
-        pageSize={parseInt(process.env.GATSBY_PAGE_SIZE)}
+        pageSize={parseInt(pageSize)}
         currentPage={currentPage || 1}
         skip={skip}
         base="/slicemasters"
-        totalCount={data.slicemasters.totalCount}
+        totalCount={totalCount}
       />
       <SlicemasterGrid>
-        {slicemasters.map((person) => (
-          <SlicemasterStyles key={person.id}>
-            <Link to={`/slicemaster/${person.slug.current}`}>
-              <h2>
-                <span className="mark">{person.name}</span>
-              </h2>
-            </Link>
-            <Img fluid={person.image.asset.fluid} />
-            <p className="description">{person.description}</p>
-          </SlicemasterStyles>
-        ))}
+        {slicemasters.map((person) => {
+          const { id, slug, name, image, description } = person;
+          return (
+            <SlicemasterStyles key={id}>
+              <Link to={`/slicemaster/${slug.current}`}>
+                <h2>
+                  <span className="mark">{name}</span>
+                </h2>
+              </Link>
+              <Img fluid={image.asset.fluid} />
+              <p className="description">{description}</p>
+            </SlicemasterStyles>
+          );
+        })}
       </SlicemasterGrid>
     </>
   );
