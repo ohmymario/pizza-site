@@ -3,9 +3,7 @@ import fetch from 'isomorphic-fetch';
 
 const turnPizzasIntoPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
-  // 1. Get a template for this page
   const pizzaTemplate = path.resolve('./src/templates/Pizza.js');
-  // 2. Query all pizzas
   const { data } = await graphql(`
     query {
       pizzas: allSanityPizza {
@@ -18,7 +16,6 @@ const turnPizzasIntoPages = async ({ graphql, actions }) => {
       }
     }
   `);
-  // 3. Loops over each pizza and create a page for that pizza
   data.pizzas.nodes.forEach((pizza) => {
     createPage({
       // What is the URL for this new page
@@ -33,9 +30,7 @@ const turnPizzasIntoPages = async ({ graphql, actions }) => {
 
 const turnToppingsIntoPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
-  // 1. Get a template for this page
   const toppingsTemplate = path.resolve('./src/pages/pizzas.js');
-  // 2. Query all pizzas
   const { data } = await graphql(`
     query {
       toppings: allSanityTopping {
@@ -46,7 +41,6 @@ const turnToppingsIntoPages = async ({ graphql, actions }) => {
       }
     }
   `);
-  // 3. Loops over each pizza and create a page for that pizza
   data.toppings.nodes.forEach((topping) => {
     createPage({
       path: `topping/${topping.name}`,
@@ -87,6 +81,10 @@ const fetchBeersAndTurnIntoNodes = async ({
 
 const turnSlicemastersIntoPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
+  // SINGLE PERSON TEMPLATE
+  const slicemasterTemplate = path.resolve('./src/templates/Slicemaster.js');
+  // MULTIPLE PEOPLE TEMPLATE
+  const slicemastersTemplate = path.resolve('./src/pages/slicemasters.js');
   const { data } = await graphql(`
     query MyQuery {
       slicemasters: allSanityPerson {
@@ -105,7 +103,7 @@ const turnSlicemastersIntoPages = async ({ graphql, actions }) => {
   data.slicemasters.nodes.forEach((slicemaster) => {
     createPage({
       path: `/slicemaster/${slicemaster.slug.current}`,
-      component: path.resolve('./src/templates/Slicemaster.js'),
+      component: slicemasterTemplate,
       context: {
         name: slicemaster.person,
         slug: slicemaster.slug.current,
@@ -119,7 +117,7 @@ const turnSlicemastersIntoPages = async ({ graphql, actions }) => {
   Array.from({ length: pageCount }).forEach((_, i) => {
     createPage({
       path: `/slicemasters/${i + 1}`,
-      component: path.resolve('./src/pages/slicemasters.js'),
+      component: slicemastersTemplate,
       context: {
         // how many employees to skip to get the needed ones for the page
         skip: i * pageSize,
@@ -137,7 +135,6 @@ export const sourceNodes = async (params) => {
 };
 
 export async function createPages(params) {
-  // create pages dynamically
   await Promise.all([
     // 1. Pizzas
     turnPizzasIntoPages(params),
