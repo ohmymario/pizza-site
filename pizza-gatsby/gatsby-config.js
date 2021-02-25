@@ -4,9 +4,9 @@ dotenv.config();
 
 export default {
   siteMetadata: {
-    title: `Gatsby`,
+    title: `Slicks Slices`,
     siteUrl: `https://www.gatsbyjs.com`,
-    description: `Blazing fast modern site generator for React`,
+    description: `The best pizza you'll ever have!`,
   },
   plugins: [
     // allows gatsby to use styled components in finding the critical CSS
