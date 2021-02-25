@@ -12,6 +12,9 @@ export default {
     // allows gatsby to use styled components in finding the critical CSS
     'gatsby-plugin-styled-components',
 
+    // react helmet server side rendering support
+    'gatsby-plugin-react-helmet',
+
     // plugin to connect sanity and gatsby
     {
       resolve: `gatsby-source-sanity`,
