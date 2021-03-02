@@ -58,7 +58,7 @@ const OrderPage = (props) => {
               </div>
               <div>
                 {['S', 'M', 'L'].map((size) => (
-                  <button type="button">
+                  <button type="button" key={size}>
                     {size} {formatMoney(calculatePizzaPrice(price, size))}
                   </button>
                 ))}
