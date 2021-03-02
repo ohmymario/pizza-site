@@ -6,6 +6,7 @@ import SEO from '../components/SEO';
 import useForm from '../utils/useForm';
 import calculatePizzaPrice from '../utils/calculatePizzaPrice';
 import formatMoney from '../utils/formatMoney';
+import OrderStyles from '../styles/OrderStyles';
 
 const OrderPage = (props) => {
   const {
@@ -19,7 +20,8 @@ const OrderPage = (props) => {
   return (
     <>
       <SEO title="Order a Pizza!" />
-      <form>
+      <OrderStyles>
+        {/* YOUR INFO */}
         <fieldset>
           <legend>Your Info</legend>
           <label htmlFor="name">
@@ -43,7 +45,8 @@ const OrderPage = (props) => {
             />
           </label>
         </fieldset>
-        <fieldset>
+        {/* MENU */}
+        <fieldset className="menu">
           <legend>Menu</legend>
           {pizzas.nodes.map(({ name, id, image, price }) => (
             <div key={id}>
@@ -66,10 +69,11 @@ const OrderPage = (props) => {
             </div>
           ))}
         </fieldset>
-        <fieldset>
+        {/* ORDER */}
+        <fieldset className="order">
           <legend>Order</legend>
         </fieldset>
-      </form>
+      </OrderStyles>
     </>
   );
 };
