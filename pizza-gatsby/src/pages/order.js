@@ -7,6 +7,7 @@ import useForm from '../utils/useForm';
 import calculatePizzaPrice from '../utils/calculatePizzaPrice';
 import formatMoney from '../utils/formatMoney';
 import OrderStyles from '../styles/OrderStyles';
+import MenuItemStyles from '../styles/MenuItemStyles';
 
 const OrderPage = (props) => {
   const {
@@ -49,7 +50,7 @@ const OrderPage = (props) => {
         <fieldset className="menu">
           <legend>Menu</legend>
           {pizzas.nodes.map(({ name, id, image, price }) => (
-            <div key={id}>
+            <MenuItemStyles key={id}>
               <Img
                 width="50"
                 height="50"
@@ -66,7 +67,7 @@ const OrderPage = (props) => {
                   </button>
                 ))}
               </div>
-            </div>
+            </MenuItemStyles>
           ))}
         </fieldset>
         {/* ORDER */}
