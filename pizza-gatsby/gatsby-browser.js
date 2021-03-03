@@ -1,5 +1,6 @@
 import React from 'react';
 import Layout from './src/components/Layout';
+import { OrderProvider } from './src/components/OrderContext';
 
 /* eslint-disable react/jsx-props-no-spreading */
 const wrapPageElement = ({ element, props }) => (
@@ -7,4 +8,9 @@ const wrapPageElement = ({ element, props }) => (
   // including location, data, etc - you don't need to pass it
   <Layout {...props}>{element}</Layout>
 );
-export { wrapPageElement };
+
+const wrapRootElement = ({ element }) => (
+  <OrderProvider>{element}</OrderProvider>
+);
+
+export { wrapPageElement, wrapRootElement };
