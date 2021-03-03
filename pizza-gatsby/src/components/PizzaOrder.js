@@ -17,7 +17,6 @@ const PizzaOrder = (props) => {
           <MenuItemStyles key={`${singleOrder.id}-${i}`}>
             <Img fluid={selectedPizza.image.asset.fluid} />
             <h2>{selectedPizza.name}</h2>
-            <h3>{i}</h3>
             <p>
               {formatMoney(
                 calculatePizzaPrice(selectedPizza.price, singleOrder.size)
