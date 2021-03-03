@@ -32,6 +32,8 @@ const OrderPage = (props) => {
   return (
     <>
       <SEO title="Order a Pizza!" />
+
+      {/* FORM */}
       <OrderStyles>
         {/* YOUR INFO */}
         <fieldset>

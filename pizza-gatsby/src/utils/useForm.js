@@ -1,19 +1,21 @@
 import { useState } from 'react';
 
 export default function useForm(defaults) {
+  // defaults - object with form
   const [values, setValues] = useState(defaults);
 
   function updateValue(e) {
-    // Check if its a number
-    let { value } = e.target;
-    if (e.target.type === 'number') {
+    // destructure needed data
+    let { value, name, type } = e.target;
+    // if value is a number make sure to convert
+    if (type === 'number') {
       value = parseInt(value);
     }
     setValues({
-      // copy the existing values into it
+      // keep the existing values
       ...values,
-      // update the new value that changed
-      [e.target.name]: value,
+      // update the new value with the name of the input
+      [name]: value,
     });
   }
 
