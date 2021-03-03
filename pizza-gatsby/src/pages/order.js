@@ -4,12 +4,15 @@ import Img from 'gatsby-image';
 
 import SEO from '../components/SEO';
 import PizzaOrder from '../components/PizzaOrder';
+
 import OrderStyles from '../styles/OrderStyles';
 import MenuItemStyles from '../styles/MenuItemStyles';
+
 import useForm from '../utils/useForm';
-import calculatePizzaPrice from '../utils/calculatePizzaPrice';
-import formatMoney from '../utils/formatMoney';
 import usePizza from '../utils/usePizza';
+import formatMoney from '../utils/formatMoney';
+import calculatePizzaPrice from '../utils/calculatePizzaPrice';
+import calculateOrderTotal from '../utils/calculateOrderTotal';
 
 const OrderPage = (props) => {
   const {
@@ -90,6 +93,11 @@ const OrderPage = (props) => {
             pizzas={pizzas}
             removeFromOrder={removeFromOrder}
           />
+        </fieldset>
+        {/* ORDER TOTAL */}
+        <fieldset>
+          <h3>Your total is {calculateOrderTotal(order, pizzas.nodes)}</h3>
+          <button type="submit">Order </button>
         </fieldset>
       </OrderStyles>
     </>
