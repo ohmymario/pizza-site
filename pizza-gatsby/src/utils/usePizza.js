@@ -1,12 +1,13 @@
 import { useState, useContext } from 'react';
 import OrderContext from '../components/OrderContext';
 import calculateOrderTotal from './calculateOrderTotal';
-import formatMoney from './formatMoney';
 
 const usePizza = (props) => {
+  // pizzas - all pizzas from graphql
+  // values - values from the form
   const { pizzas, values } = props;
 
-  // 1. Hold order
+  // 1. Hold order data
   // state / data persists through context
   const [order, setOrder] = useContext(OrderContext);
   const [error, setError] = useState();
@@ -28,20 +29,26 @@ const usePizza = (props) => {
     ]);
   }
 
-  // Run when user submits form
-  async function submitOrder(e) {
-    e.preventDefault();
+  // 4. Get state and body ready to submit data
+  function getSubmitReady() {
     setLoading(true);
     setError(null);
     setMessage(null);
-    // gather data
     const body = {
       order,
       total: calculateOrderTotal(order, pizzas.nodes),
       name: values.name,
       email: values.email,
     };
-    // 4. Send this data to a serverless function when user checks out
+    return body;
+  }
+
+  // Run when user submits form
+  // 5. Send this data to a serverless function when user checks out
+  async function submitOrder(e) {
+    e.preventDefault();
+    const body = getSubmitReady();
+
     const res = await fetch(
       `${process.env.GATSBY_SERVERLESS_BASE}/placeOrder`,
       {
