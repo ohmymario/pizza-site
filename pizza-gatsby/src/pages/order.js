@@ -24,10 +24,22 @@ const OrderPage = (props) => {
     email: '',
   });
 
-  const { order, addToOrder, removeFromOrder } = usePizza({
+  const {
+    order,
+    addToOrder,
+    removeFromOrder,
+    submitOrder,
+    error,
+    loading,
+    message,
+  } = usePizza({
     pizzas,
-    inputs: values,
+    values,
   });
+
+  if (message) {
+    return <p>{message}</p>;
+  }
 
   return (
     <>
@@ -107,7 +119,10 @@ const OrderPage = (props) => {
         {/* ORDER TOTAL */}
         <fieldset>
           <h3>Your total is {calculateOrderTotal(order, pizzas.nodes)}</h3>
-          <button type="submit">Order </button>
+          <div>{error ? <p>Error: {error}</p> : ''}</div>
+          <button type="submit" disabled={loading} onClick={submitOrder}>
+            {loading ? 'Placing Order' : 'Order Ahead'}
+          </button>
         </fieldset>
       </OrderStyles>
     </>
