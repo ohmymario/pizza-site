@@ -78,7 +78,15 @@ const OrderPage = (props) => {
                   <button
                     type="button"
                     key={size}
-                    onClick={() => addToOrder({ id, size })}
+                    onClick={() =>
+                      addToOrder({
+                        name,
+                        price: formatMoney(calculatePizzaPrice(price, size)),
+                        id,
+                        size,
+                        image: image.asset.fluid.src,
+                      })
+                    }
                   >
                     {size} {formatMoney(calculatePizzaPrice(price, size))}
                   </button>
