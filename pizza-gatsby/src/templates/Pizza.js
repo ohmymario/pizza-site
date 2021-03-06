@@ -12,7 +12,7 @@ const PizzaGrid = styled.div`
 
 const SinglePizzaPage = ({ data }) => {
   const {
-    pizza: { name, id, image, toppings },
+    pizza: { name, image, toppings },
   } = data;
 
   return (
