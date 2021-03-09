@@ -10,20 +10,12 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-// console.log('===============================');
-// console.log(`Host ${process.env.MAIL_HOST}`);
-// console.log(`USER ${process.env.MAIL_USER}`);
-// console.log(`USER ${process.env.MAIL_PASS}`);
-// console.log('===============================');
-
 exports.handler = async (event, context) => {
   const body = JSON.parse(event.body);
-  console.log(body);
 
   // validate the data - check if its correct
   const requiredFields = ['email', 'name', 'order'];
   for (const field of requiredFields) {
-    console.log(`Checking that ${field} is good`);
     if (!body[field]) {
       return {
         statusCode: 500,
