@@ -1,5 +1,30 @@
 const nodemailer = require('nodemailer');
 
+const generateOrderEmail = (data) => {
+  const { order, total } = data;
+
+  return `<div>
+  <h2>Your Recent Order for ${total}</h2>
+    <p>Please start walking over, we will have your order ready in the next 20 mins.</p>
+    <ul>
+      ${order
+        .map(
+          (item) => `<li>
+        <img src="${item.image}" alt="${item.name}"/>
+        ${item.size} ${item.name} - ${item.price}
+      </li>`
+        )
+        .join('')}
+    </ul>
+    <p>Your total is <strong>${total}</strong> due at pickup</p>
+    <style>
+        ul {
+          list-style: none;
+        }
+    </style>
+  </div>`;
+};
+
 // create a transport for nodemailer
 const transporter = nodemailer.createTransport({
   host: process.env.MAIL_HOST,
@@ -32,10 +57,10 @@ exports.handler = async (event, context) => {
   // TESTING THE EMAILER
   const info = await transporter.sendMail({
     from: "Slick's Slices <slick@emample.com>",
-    to: 'orders@example.com',
-    subject: 'New order!',
-    html: `<p>Your new pizza order is here</p>`,
+    to: `${body.name} <${body.email}>, orders@example.com`,
+    subject: 'New Order!',
+    html: generateOrderEmail({ order: body.order, total: body.total }),
   });
-  console.log(info);
-  return { statusCode: 200, body: JSON.stringify(info) };
+
+  return { statusCode: 200, body: JSON.stringify({ messages: 'Success' }) };
 };
