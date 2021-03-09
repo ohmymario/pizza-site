@@ -36,20 +36,39 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+// testing adding artificial time
+function wait(ms = 0) {
+  return new Promise((resolve, reject) => {
+    setTimeout(resolve, ms);
+  });
+}
+
 exports.handler = async (event, context) => {
+  // await wait(5000);
+
   const body = JSON.parse(event.body);
 
-  // Validate Data
+  // Validate Data - Fields
   const requiredFields = ['email', 'name', 'order'];
   for (const field of requiredFields) {
     if (!body[field]) {
       return {
-        statusCode: 500,
+        statusCode: 400,
         body: JSON.stringify({
           message: `Oops you are missing the ${field} field`,
         }),
       };
     }
+  }
+
+  // Validate Data - Check if user added any pizzas
+  if (!body.order.length) {
+    return {
+      statusCode: 400,
+      body: JSON.stringify({
+        message: `Why would you order nothing?!`,
+      }),
+    };
   }
 
   // Send Email
