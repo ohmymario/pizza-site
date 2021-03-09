@@ -48,7 +48,7 @@ const OrderPage = (props) => {
       {/* FORM */}
       <OrderStyles>
         {/* YOUR INFO */}
-        <fieldset>
+        <fieldset disabled={loading}>
           <legend>Your Info</legend>
           <label htmlFor="name">
             Name
@@ -72,7 +72,7 @@ const OrderPage = (props) => {
           </label>
         </fieldset>
         {/* MENU */}
-        <fieldset className="menu">
+        <fieldset className="menu" disabled={loading}>
           <legend>Menu</legend>
           {pizzas.nodes.map(({ name, id, image, price }) => (
             <MenuItemStyles key={id}>
@@ -108,7 +108,7 @@ const OrderPage = (props) => {
           ))}
         </fieldset>
         {/* ORDER */}
-        <fieldset className="order">
+        <fieldset className="order" disabled={loading}>
           <legend>Order</legend>
           <PizzaOrder
             order={order}
@@ -117,11 +117,11 @@ const OrderPage = (props) => {
           />
         </fieldset>
         {/* ORDER TOTAL */}
-        <fieldset>
+        <fieldset disabled={loading}>
           <h3>Your total is {calculateOrderTotal(order, pizzas.nodes)}</h3>
           <div>{error ? <p>Error: {error}</p> : ''}</div>
           <button type="submit" disabled={loading} onClick={submitOrder}>
-            {loading ? 'Placing Order' : 'Order Ahead'}
+            {loading ? 'Placing Order...' : 'Order Ahead'}
           </button>
         </fieldset>
       </OrderStyles>

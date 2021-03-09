@@ -67,7 +67,7 @@ const usePizza = (props) => {
       setLoading(false);
       setError(text.message);
     } else {
-      // WORKING
+      // SUCCESS
       setLoading(false);
       setMessage('Success! Come on down and get your pizza!');
     }
