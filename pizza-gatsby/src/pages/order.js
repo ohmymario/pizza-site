@@ -22,6 +22,7 @@ const OrderPage = (props) => {
   const { values, updateValue } = useForm({
     name: '',
     email: '',
+    a_password: '',
   });
 
   const {
@@ -70,6 +71,16 @@ const OrderPage = (props) => {
               onChange={updateValue}
             />
           </label>
+          <input
+            type="a_password"
+            name="a_password"
+            id="a_password"
+            className="a_password"
+            value={values.a_password}
+            tabIndex="-1"
+            autoComplete="new-password"
+            onChange={updateValue}
+          />
         </fieldset>
         {/* MENU */}
         <fieldset className="menu" disabled={loading}>

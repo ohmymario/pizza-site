@@ -39,6 +39,7 @@ const usePizza = (props) => {
       total: calculateOrderTotal(order, pizzas.nodes),
       name: values.name,
       email: values.email,
+      a_password: values.a_password,
     };
     return body;
   }
