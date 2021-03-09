@@ -55,8 +55,8 @@ const usePizza = (props) => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          body: JSON.stringify(body),
         },
+        body: JSON.stringify(body),
       }
     );
     const text = await JSON.parse(await res.text());
