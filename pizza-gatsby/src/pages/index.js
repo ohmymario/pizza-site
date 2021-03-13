@@ -1,12 +1,14 @@
 import React from 'react';
 import useLatestData from '../utils/useLatestData';
+import CurrentlySlicing from '../components/CurrentlySlicing';
+import HotSlices from '../components/HotSlices';
 
-function CurrentlySlicing() {
-  return <p>CurrentlySlicing</p>;
-}
-function HotSlices() {
-  return <p>HotSlices</p>;
-}
+// function CurrentlySlicing() {
+//   return <p>CurrentlySlicing</p>;
+// }
+// function HotSlices() {
+//   return <p>HotSlices</p>;
+// }
 
 const HomePage = (props) => {
   const { slicemasters, hotSlices } = useLatestData();
