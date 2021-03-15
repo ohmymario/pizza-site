@@ -3,12 +3,7 @@ import useLatestData from '../utils/useLatestData';
 import CurrentlySlicing from '../components/CurrentlySlicing';
 import HotSlices from '../components/HotSlices';
 
-// function CurrentlySlicing() {
-//   return <p>CurrentlySlicing</p>;
-// }
-// function HotSlices() {
-//   return <p>HotSlices</p>;
-// }
+import { HomePageGrid } from '../styles/Grids';
 
 const HomePage = (props) => {
   const { slicemasters, hotSlices } = useLatestData();
@@ -16,10 +11,10 @@ const HomePage = (props) => {
     <div className="center">
       <h1>The Best Pizza Downtown!</h1>
       <p>Open 11am to 11pm Every Single Day</p>
-      <div>
+      <HomePageGrid>
         <CurrentlySlicing slicemasters={slicemasters} />
         <HotSlices hotSlices={hotSlices} />
-      </div>
+      </HomePageGrid>
     </div>
   );
 };
