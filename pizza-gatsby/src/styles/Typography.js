@@ -41,9 +41,7 @@ const Typography = createGlobalStyle`
     text-align: center;
   }
 
-  .tilt {
-    transform: rotate(-2deg);
-  }
+
 
 `;
 
