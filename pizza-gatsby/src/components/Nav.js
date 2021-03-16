@@ -4,7 +4,7 @@ import { Link } from 'gatsby';
 import Logo from './Logo';
 
 const NavStyles = styled.nav`
-  margin-bottom: 3rem;
+  /* margin-bottom: 3rem; */
   .logo {
     transform: translateY(-25%);
   }
