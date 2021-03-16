@@ -6,6 +6,22 @@ function useLatestData() {
   // Slicemasters
   const [slicemasters, setSlicemasters] = useState();
 
+  const query = {
+    query: `
+      query {
+        StoreSettings(id: "downtown") {
+          name
+          slicemaster {
+            name
+          }
+          hotSlices {
+            name
+          }
+        }
+      }
+    `,
+  };
+
   // Effect to fetch the data from the graphql endpoint
   useEffect(() => {
     // effect;
@@ -14,21 +30,7 @@ function useLatestData() {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        query: `
-          query {
-            StoreSettings(id: "downtown") {
-              name
-              slicemaster {
-                name
-              }
-              hotSlices {
-                name
-              }
-            }
-          }
-        `,
-      }),
+      body: JSON.stringify(query),
     })
       .then((res) => res.json())
       .then((res) => {
