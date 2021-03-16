@@ -1,5 +1,21 @@
 import { useState, useEffect } from 'react';
 
+// For syntax highlighting
+const gql = String.raw;
+
+const commongql = gql`
+    name
+    _id
+    image {
+      asset {
+        url
+        metadata {
+          lqip
+        }
+      }
+    }
+`;
+
 function useLatestData() {
   // Hot Slices
   const [hotSlices, setHotSlices] = useState();
@@ -7,15 +23,16 @@ function useLatestData() {
   const [slicemasters, setSlicemasters] = useState();
 
   const query = {
-    query: `
+    query: gql`
       query {
         StoreSettings(id: "downtown") {
           name
           slicemaster {
-            name
+            ${commongql}
           }
+
           hotSlices {
-            name
+            ${commongql}
           }
         }
       }
