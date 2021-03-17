@@ -96,7 +96,7 @@ const OrderPage = (props) => {
               <div>
                 <h2>{name}</h2>
               </div>
-              <div>
+              <div className="order-btn">
                 {['S', 'M', 'L'].map((size) => (
                   <button
                     type="button"

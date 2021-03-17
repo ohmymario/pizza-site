@@ -15,8 +15,17 @@ const MenuItemStyles = styled.div`
   p {
     margin: 0;
   }
+  .order-btn {
+    display: flex;
+    @media (max-width: 600px) {
+      justify-content: space-between;
+    }
+  }
   button {
     font-size: 1.5rem;
+    @media (max-width: 600px) {
+      font-size: 2rem;
+    }
   }
   button + button {
     margin-left: 1rem;
