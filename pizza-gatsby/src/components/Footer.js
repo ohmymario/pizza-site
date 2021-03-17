@@ -7,7 +7,7 @@ const Footer = () => {
   };
   return (
     <footer>
-      <p>&copy; Slick's Slices {currentYear()}</p>
+      <p className="center">&copy; Slick's Slices {currentYear()}</p>
     </footer>
   );
 };

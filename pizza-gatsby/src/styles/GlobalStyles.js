@@ -28,6 +28,10 @@ const GlobalStyles = createGlobalStyle`
     border-width: 1px;
   }
 
+  footer p {
+    margin-bottom: 0;
+  }
+
   button {
     background: var(--red);
     color: white;
