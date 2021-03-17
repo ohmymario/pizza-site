@@ -3,7 +3,12 @@ import styled from 'styled-components';
 const HomePageGrid = styled.div`
   display: grid;
   gap: 2rem;
-  grid-template-columns: repeat(2, minmax(auto, 1fr));
+  --columns: 2;
+  grid-template-columns: repeat(var(--columns), minmax(auto, 1fr));
+
+  @media (max-width: 800px) {
+    --columns: 1;
+  }
 `;
 
 const ItemsGrid = styled.div`
@@ -14,8 +19,8 @@ const ItemsGrid = styled.div`
 
 // Single Grid Item (for home page)
 const ItemStyles = styled.div`
-  text-align: center;
   position: relative;
+  text-align: center;
   img {
     // auto - keep image aspect ratio
     height: auto;
@@ -24,9 +29,9 @@ const ItemStyles = styled.div`
 
   // Above Image Text
   p {
+    position: absolute;
     top: 0;
     transform: rotate(-2deg) translateY(-10px);
-    position: absolute;
     width: 100%;
     left: 0;
     margin: 0;
