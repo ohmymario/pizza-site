@@ -5,8 +5,9 @@ import stripes from '../assets/images/stripes.svg';
 const LogoStyles = styled.div`
   /* This value controls the entire size of the logo*/
   // Font controls entire LOGO
+  /* clamp issues on firefox... */
+  /* font-size: clamp(1px, 0.65vw, 8px); */
   font-size: 6px;
-  font-size: clamp(1px, 0.65vw, 8px);
 
   --borderSize: 1em;
   // transparent red stripes w/ white background
